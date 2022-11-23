@@ -1,71 +1,42 @@
 {
   "project_info": {
-    "project_number": "192259139593",
-    "firebase_url": "https://expense-trackerwecoders.firebaseio.com",
-    "project_id": "expense-trackerwecoders",
-    "storage_bucket": "expense-trackerwecoders.appspot.com"
+    "project_number": "972750638780",
+    "firebase_url": "https://expensetracker-a1e9f-default-rtdb.firebaseio.com",
+    "project_id": "expensetracker-a1e9f",
+    "storage_bucket": "expensetracker-a1e9f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:192259139593:android:e068ecf56316b3a481f0d8",
-        "android_client_info": {
-          "package_name": "com.sanket.trial_one"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "192259139593-tiuqt279l415irjklegces4qrmdq7alk.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDvmo3ZPcy6esJ0dmqSmpcCLz-B2WslrUk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "192259139593-tiuqt279l415irjklegces4qrmdq7alk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:192259139593:android:2e526208e83eda4181f0d8",
+        "mobilesdk_app_id": "1:972750638780:android:7663ac0b8390ef2a61cab9",
         "android_client_info": {
           "package_name": "com.wecoders.expensetracker_wecoders"
         }
       },
       "oauth_client": [
         {
-          "client_id": "192259139593-hl6rvnjt8d661otokojco54h9772fafd.apps.googleusercontent.com",
+          "client_id": "972750638780-vuqs48hjk5thqgc3muuk67bsemdtusp5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.wecoders.expensetracker_wecoders",
-            "certificate_hash": "2615e2a5263f566ca9b6965472fdeb375cf571a6"
+            "certificate_hash": "984b0a2f2e654b9b1565a3c840268f9e4cef7165"
           }
         },
         {
-          "client_id": "192259139593-tiuqt279l415irjklegces4qrmdq7alk.apps.googleusercontent.com",
+          "client_id": "972750638780-52vdih4crsgjinl644nkna54p5a3nmnf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvmo3ZPcy6esJ0dmqSmpcCLz-B2WslrUk"
+          "current_key": "AIzaSyCqFLgLt1hae-5wcxdi1Rb0keXPVY58wts"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "192259139593-tiuqt279l415irjklegces4qrmdq7alk.apps.googleusercontent.com",
+              "client_id": "972750638780-52vdih4crsgjinl644nkna54p5a3nmnf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

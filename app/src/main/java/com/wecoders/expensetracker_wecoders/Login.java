@@ -25,11 +25,13 @@ public class Login extends AppCompatActivity {
     TextInputLayout email,password;
     Button btn,login;
     FirebaseAuth FAuth;
+    Utils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        utils = new Utils();
         btn =(Button) findViewById(R.id.register1);
 
         email = (TextInputLayout) findViewById(R.id.email);
@@ -50,36 +52,43 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "All Fields Required", Toast.LENGTH_SHORT).show();
                 }
 
+                else if (!utils.isValidPassword(tex_password))
+                {
+                    Toast.makeText(Login.this,"Enter Valid Password 1 digit, 1 small & 1upper case letter, a special char and length > 6", Toast.LENGTH_SHORT).show();
 
-                FAuth.signInWithEmailAndPassword(tex_email, tex_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                }
+                else {
 
 
-                            Intent intent = new Intent(Login.this, MainActivity.class);
-                            startActivity(intent);
+                    FAuth.signInWithEmailAndPassword(tex_email, tex_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            SharedPreferences sp1 = getSharedPreferences("Login_Flag", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sp1.edit();
-                            editor.putString("loginSet","1log");
-                            String[] a1 = tex_email.split("@");
-                            String[] a2 = a1[1].split(".");
-                            String id = a1[0]+""+a2[0]+""+a2[1];
-                            editor.putString("userId",id);
-                            editor.apply();
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+
+
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
+
+                                SharedPreferences sp1 = getSharedPreferences("Login_Flag", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp1.edit();
+                                editor.putString("loginSet", "1log");
+                                String[] a1 = tex_email.split("@");
+                                String[] a2 = a1[1].split(".");
+                                String id = a1[0] + "" + a2[0] + "" + a2[1];
+                                editor.putString("userId", id);
+                                editor.apply();
+                            } else {
+                                // Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, "MISTAKE", Toast.LENGTH_SHORT).show();
+                                Log.d("z", "onComplete: Failed=" + task.getException().getMessage());
+
+                            }
+
                         }
-                        else {
-                           // Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
-                            Toast.makeText(Login.this,"MISTAKE", Toast.LENGTH_SHORT).show();
-                            Log.d("z", "onComplete: Failed=" + task.getException().getMessage());
-
-                        }
-
-                    }
-                });
+                    });
+                }
 
 
             }

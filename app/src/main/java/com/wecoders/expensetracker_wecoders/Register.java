@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,11 +26,13 @@ public class Register extends AppCompatActivity {
     TextInputLayout mFullName,mEmail,mPassword,mPhone;
     Button mRegisterbtn;
     FirebaseAuth FAuth;
+    Utils utils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        utils = new Utils();
 
         mFullName = (TextInputLayout) findViewById(R.id.fullname);
         mPhone=(TextInputLayout) findViewById(R.id.phone);
@@ -61,24 +64,23 @@ public class Register extends AppCompatActivity {
                     mPassword.setError("Password is Required");
                     return;
                 }
-                if(Password.length()<6)
+                if(!utils.isValidPassword(Password))
                 {
-                    mPassword.setError("Password must be greater then 6");
+                    mPassword.setError("Enter Valid Password 1 digit, 1 small & 1upper case letter, a special char and length > 6");
                     return;
                 }
 
                 FAuth.createUserWithEmailAndPassword(Email, Password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(Register.this, Login.class);
-                                    startActivity(intent);
-                                }
-                                else {
-                                    Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
-                                }
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(Register.this, Login.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Utils utils = new Utils();
+                                utils.appLog("Exception -> "+task.getException()+"\n Result -> "+task.getResult());
+                                Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
                             }
                         });
 
